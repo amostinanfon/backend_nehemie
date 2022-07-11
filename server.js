@@ -21,7 +21,10 @@ dotenv.config();
 app.use(cors({origin:['https://sunset7.netlify.app', 
                       'https:adminsun7.netlify.app',
                       'https://usdtapp.herokuapp.com/api/users',
-                     ' https://usdtapp.herokuapp.com/api/income'
+                      'https://usdtapp.herokuapp.com/api/income',
+                      'https://usdtapp.herokuapp.com/api/users/stats',
+                      'https://usdtapp.herokuapp.com/api/orders',
+                      'https://usdtapp.herokuapp.com/api/users/?new=true',
                     ], credentials:true}));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
