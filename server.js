@@ -15,7 +15,9 @@ const bodyParser = require ('body-parser');
 
 dotenv.config();
 
-app.use(cors());
+app.use(cors({
+    origin: ["https://adminsun7.netlify.app", "https://sunset7.netlify.app"]
+}));
 
 
 mongoose.connect("mongodb+srv://nehemie:nehemie@cluster0.your6.mongodb.net/?retryWrites=true&w=majority")
@@ -25,15 +27,15 @@ mongoose.connect("mongodb+srv://nehemie:nehemie@cluster0.your6.mongodb.net/?retr
 app.use(express.json());
 //app.use(cors({origin: ["http://localhost:5000/api/checkout/", "https://checkout.stripe.com"]}));
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", '*');
-    res.header("Access-Control-Allow-Credentials", true);
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-    next();
-  });
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", '*');
+//     res.header("Access-Control-Allow-Credentials", true);
+//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+//     res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+//     next();
+//   });
 
-app.use(bodyParser.urlencoded({extended: false}));
+// app.use(bodyParser.urlencoded({extended: false}));
 
 
 app.use('/api/auth', authRoute);
