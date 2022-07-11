@@ -10,14 +10,30 @@ const cartRoute = require('./routes/cart');
 const orderRoute = require('./routes/order');
 const stripeRoute = require('./routes/stripe');
 const bodyParser = require ('body-parser');
+const morgan = require('morgan');
 
+
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 
 dotenv.config();
 
-app.use(cors({
-    origin: ["https://adminsun7.netlify.app", "https://sunset7.netlify.app"]
-}));
+//app.use(cors());
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", '*');
+    res.header("Access-Control-Allow-Headers", 
+    'Origin,X-Requested-With,Content-Type, Accept, Authorization');
+
+    if (req.method === 'OPTIONS') {
+        res.header('Access-Control-Allow-Methods', 'PUT,POST,PATCH,DELETE, GET');
+        return res.status(200).json({});
+    }
+    next();
+  });
 
 
 mongoose.connect("mongodb+srv://nehemie:nehemie@cluster0.your6.mongodb.net/?retryWrites=true&w=majority")
@@ -27,17 +43,9 @@ mongoose.connect("mongodb+srv://nehemie:nehemie@cluster0.your6.mongodb.net/?retr
 app.use(express.json());
 //app.use(cors({origin: ["http://localhost:5000/api/checkout/", "https://checkout.stripe.com"]}));
 
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", '*');
-//     res.header("Access-Control-Allow-Credentials", true);
-//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-//     res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-//     next();
-//   });
 
-// app.use(bodyParser.urlencoded({extended: false}));
-
-
+// app.use('/api', createProxyMiddleware({ target: 'https://sunset7.netlify.app', changeOrigin: true }));
+// app.use('/api', createProxyMiddleware({ target: 'https://adminsun7.netlify.app', changeOrigin: true }));
 app.use('/api/auth', authRoute);
 app.use('/api/users', userRoute); 
 app.use('/api/products', productRoute); 

@@ -8,6 +8,7 @@ const CryptoJS = require("crypto-js");
 
 
 // mise à jour 
+// router.put("/:id", verifyTokenAndAuthorization, async(req, res) =>{
 router.put("/:id", verifyTokenAndAuthorization, async(req, res) =>{
 
     //const id = req.user.id;
@@ -30,7 +31,8 @@ router.put("/:id", verifyTokenAndAuthorization, async(req, res) =>{
 
 //DELETE :::: SUPPRIMER UN ELEMENT DANS L'API
 
-router.delete("/:id", verifyTokenAndAuthorization, async(req,res) => {
+// router.delete("/:id", verifyTokenAndAuthorization, async(req,res) => {
+router.delete("/:id", async(req,res) => {
     try {
         await User.findByIdAndDelete(req.params.id);
         res.status(200).json("Utilisateur supprimé . . .");
