@@ -18,13 +18,12 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 dotenv.config();
 
-app.use(cors({origin:['https://sunset7.netlify.app', 
-                      'https:adminsun7.netlify.app',
-                      'https://usdtapp.herokuapp.com/api/users',
-                      'https://usdtapp.herokuapp.com/api/income',
-                      'https://usdtapp.herokuapp.com/api/users/stats',
-                      'https://usdtapp.herokuapp.com/api/orders',
-                      'https://usdtapp.herokuapp.com/api/users/?new=true',
+app.use(cors({origin:['http://82.180.137.232/', 
+                      'http://82.180.137.232/api/users',
+                      'http://82.180.137.232/api/income',
+                      'http://82.180.137.232/api/users/stats',
+                      'http://82.180.137.232/api/orders',
+                      'http://82.180.137.232/api/users/?new=true',
                     ], credentials:true}));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
