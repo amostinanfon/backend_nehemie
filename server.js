@@ -20,6 +20,8 @@ dotenv.config();
 
 app.use(cors({origin:['http://sun7network.com/',
                       'http://82.180.137.232',
+                      'http://82.180.137.232/api/users',
+                      'http://82.180.137.232/api/income',
                       'http://www.sun7network.com', 
                       'http://sun7network.com/api/users',
                       'http://sun7network.com/api/income',
