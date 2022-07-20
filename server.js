@@ -18,12 +18,14 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 dotenv.config();
 
-app.use(cors({origin:['http://82.180.137.232/', 
-                      'http://82.180.137.232/api/users',
-                      'http://82.180.137.232/api/income',
-                      'http://82.180.137.232/api/users/stats',
-                      'http://82.180.137.232/api/orders',
-                      'http://82.180.137.232/api/users/?new=true',
+app.use(cors({origin:['http://sun7network.com/',
+                      'http://82.180.137.232',
+                      'http://www.sun7network.com', 
+                      'http://sun7network.com/api/users',
+                      'http://sun7network.com/api/income',
+                      'http://sun7network.com/api/users/stats',
+                      'http://sun7network.com/api/orders',
+                      'http://sun7network.com/api/users/?new=true',
                     ], credentials:true}));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
